@@ -298,7 +298,7 @@ const ContentHome = () => {
                                   ))}
                                 </div>
                                 <p className="text-base font-semibold text-white">
-                                  {product?.price.toLocaleString("vi")} đ
+                                  {product?.price.toLocaleString("vi")} SOL
                                 </p>
                               </div>
                             </div>

@@ -16,7 +16,7 @@ model User {
   email           String   @unique
   password        String
   admin           Boolean @default(false)
-  solanaPublicKey String   @unique // Đảm bảo rằng trường này đã được thêm vào
+  solanaPublicKey String  // Đảm bảo rằng trường này đã được thêm vào
   profile         Profile?
   cart            Cart[]
   vouchers        UserVoucher[]

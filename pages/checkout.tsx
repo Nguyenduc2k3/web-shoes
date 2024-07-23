@@ -330,7 +330,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
           </button>
         </div>,
         <div>
-          {(item?.priceProd * item?.quantityProd).toLocaleString("vi")} đ
+          {(item?.priceProd * item?.quantityProd).toLocaleString("vi")} SOL
         </div>,
         <div
           // onClick={() => handleDeleteProdCart(item?.idProd, item?.userId)}
@@ -393,7 +393,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             </div>
           </div>
         </div>,
-        <div>{item?.price?.toLocaleString("vi")} đ</div>,
+        <div>{item?.price?.toLocaleString("vi")} SOl</div>,
         <div className="relative hover:border-white select-none flex items-center rounded-lg w-[78px] py-1 justify-around border border-[rgba(145,158,171,0.32)]">
           <button>
             <BiMinus onClick={() => handleDecreaseQuantity()} />
@@ -404,7 +404,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             <BiPlus onClick={handleIncreaseQuantity} />
           </button>
         </div>,
-        <div>{(item?.price * item?.quantity).toLocaleString("vi")} đ</div>,
+        <div>{(item?.price * item?.quantity).toLocaleString("vi")} SOL</div>,
         <div
           // onClick={() => handleDeleteProdCart(item?.idProd, item?.userId)}
           onClick={() => {
@@ -1041,7 +1041,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                 <p className="flex justify-between items-center">
                   <span className="text-[rgb(145,158,171)]">Tổng phụ thu</span>
                   <span className="font-semibold">
-                    {previewPrice.toLocaleString("vi")} đ
+                    {previewPrice.toLocaleString("vi")} SOL
                   </span>
                 </p>
                 <p className="flex justify-between items-center">
@@ -1056,7 +1056,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                   <p className="flex justify-between items-center">
                     <span className="text-[rgb(145,158,171)]">Giảm giá</span>{" "}
                     <span className="font-semibold">
-                      - {voucherUsed?.discount?.toLocaleString("vi")}đ
+                      - {voucherUsed?.discount?.toLocaleString("vi")}SOL
                     </span>
                   </p>
                 )}
@@ -1064,7 +1064,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
               <div className="flex items-center justify-between mt-4">
                 <p className="font-bold">Tổng đơn hàng</p>
                 <span className="font-semibold text-red-500">
-                  {totalPriceOrder.toLocaleString("vi")} đ
+                  {totalPriceOrder.toLocaleString("vi")} SOL
                 </span>
               </div>
             </div>
