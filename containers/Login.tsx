@@ -129,10 +129,6 @@
 
 // export default Login;
 
-
-
-
-
 // import { useState } from "react";
 // import axios from "axios";
 // import { useRouter } from "next/router";
@@ -319,6 +315,7 @@
 
 
 
+
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -354,7 +351,7 @@ const Login = () => {
       alert("Please install a Solana wallet extension like Phantom.");
       return;
     }
-  
+
     try {
       const phantom = new PhantomWalletAdapter();
       await phantom.connect();
@@ -363,7 +360,7 @@ const Login = () => {
       const wallet = {
         address: phantom.publicKey.toString(),
       };
-  
+
       if (wallet.address && isValidPublicKey(wallet.address)) {
         console.log(wallet.address);
         setWallID(wallet.address);
@@ -384,7 +381,6 @@ const Login = () => {
       setError("Failed to connect to the wallet. Please try again.");
     }
   };
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -400,7 +396,7 @@ const Login = () => {
         solanaPublicKey: wallID,
       });
       console.log("Login successful:", response.data);
-      router.push('/dashboard'); // Example redirect
+      router.push("/dashboard"); // Example redirect
     } catch (error) {
       console.error("Login error:", error);
       setError("Login failed. Please check your credentials and wallet.");
@@ -417,9 +413,12 @@ const Login = () => {
       <form onSubmit={handleLogin} className="flex flex-col space-y-10 mt-14">
         {!connStatus && (
           <div className="flex flex-col items-center mb-6">
-            <h2 className="text-xl font-semibold text-white mb-2">Connect Your Wallet</h2>
+            <h2 className="text-xl font-semibold text-white mb-2">
+              Connect Your Wallet
+            </h2>
             <p className="text-gray-300 mb-4">
-              You need to connect your wallet to deploy and interact with your contracts.
+              You need to connect your wallet to deploy and interact with your
+              contracts.
             </p>
             <button
               type="button"
@@ -433,6 +432,11 @@ const Login = () => {
         )}
         {connStatus && (
           <>
+            <div>
+              <h3 className="text-xl font-bold text-white text-center">
+                Ví đã kết nối: {wallID}
+              </h3>
+            </div>
             <div className="relative mb-4">
               <input
                 type="email"
@@ -495,7 +499,7 @@ const Login = () => {
               <button
                 type="button"
                 className="bg-gray-400 px-6 text-white rounded-full py-2 hover:bg-gray-500"
-                onClick={() => router.push('/')}
+                onClick={() => router.push("/")}
               >
                 Trở về
               </button>
@@ -512,7 +516,9 @@ const Login = () => {
       <div className="text-gray-400 text-base flex justify-center mt-5">
         Bạn chưa có tài khoản?{" "}
         <Link href="/sign-up">
-          <p className="hover:underline ml-1 cursor-pointer text-primary hover:text-opacity-80">Đăng ký</p>
+          <p className="hover:underline ml-1 cursor-pointer text-primary hover:text-opacity-80">
+            Đăng ký
+          </p>
         </Link>
       </div>
     </div>

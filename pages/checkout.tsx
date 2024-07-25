@@ -52,6 +52,10 @@ const payment = [
     title: "Thanh toán bằng VNPAY",
     des: "Thanh toán bằng ví VNPAY.",
   },
+  {
+    title: "Thanh toán bằng SOLANA",
+    des: "Thanh toán bằng ví PHANTOM.",
+  },
 ];
 const listCity = [
   "Hà Nội",
@@ -1083,7 +1087,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             {currentTab === tabs[2] && (
               <button
                 onClick={() => {
-                  optionPayment.includes("VNPAY")
+                  optionPayment.includes("SOLANA")
                     ? handlePayment()
                     : handleBoughtProd({ isPay: false });
                 }}
@@ -1093,7 +1097,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                     : "bg-green-600 hover:bg-green-700 text-white"
                 }  w-full py-3 rounded-md font-semibold mt-4`}
               >
-                {optionPayment.includes("VNPAY") ? "Thanh toán" : "Đặt Hàng"}
+                {optionPayment.includes("SOLANA") ? "Thanh toán" : "Đặt Hàng"}
               </button>
             )}
           </div>
