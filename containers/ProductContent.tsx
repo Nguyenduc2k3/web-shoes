@@ -100,7 +100,7 @@ const ProductContent = () => {
                     ))}
                   </div>
                   <p className="text-base font-semibold">
-                    {product?.price.toLocaleString("vi")} SOL
+                    {product?.price.toLocaleString("vi")} USDC
                   </p>
                 </div>
               </div>

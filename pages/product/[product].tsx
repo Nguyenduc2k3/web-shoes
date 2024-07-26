@@ -231,7 +231,7 @@ const ProductDetail = ({ loading }: { loading: Boolean }) => {
             <div className="space-y-3">
               <h2 className="text-2xl font-bold">{dataProduct?.name}</h2>
               <p className="text-xl text-red-600 font-semibold">
-                {dataProduct?.price.toLocaleString("vi")} SOL
+                {dataProduct?.price.toLocaleString("vi")} USDC
               </p>
             </div>
             <div className="border-y border-dashed border-[rgba(145,158,171,0.24)]">
