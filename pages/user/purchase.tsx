@@ -167,11 +167,11 @@ const Purchase = ({ loading }: { loading: Boolean }) => {
                             {(
                               item?.quantityProd * item?.priceProd
                             ).toLocaleString("vi")}{" "}
-                            đ
+                            USDC
                           </p>
                           {item.finalPrice !== item.priceProd && (
                             <p className="text-sm text-red-500 font-semibold whitespace-nowrap">
-                              {item.finalPrice?.toLocaleString("vi")} đ
+                              {item.finalPrice?.toLocaleString("vi")} USDC
                             </p>
                           )}
                         </div>

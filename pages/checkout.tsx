@@ -435,7 +435,6 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             code: voucherUsed?.code,
           });
         }
-        setOpenModalBought(true);
       } else {
         console.log({ mailAddress });
         const res = await createOrderGuest({
@@ -463,6 +462,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
 
   const handlePayment = async () => {
     setOpenModalPayment(true);
+    handleBoughtProd({ isPay: true });
   };
 
   useEffect(() => {
