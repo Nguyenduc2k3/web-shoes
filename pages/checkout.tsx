@@ -462,7 +462,6 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
 
   const handlePayment = async () => {
     setOpenModalPayment(true);
-    handleBoughtProd({ isPay: true });
   };
 
   useEffect(() => {
@@ -1147,7 +1146,8 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
         setOpen={setOpenModalPayment}
         title="Thanh toán đơn hàng"
       >
-        <PaymentForm price={totalPriceOrder} voucher={voucherUsed} />
+        {/* <PaymentForm price={totalPriceOrder} voucher={voucherUsed} /> */}
+        <PaymentForm price={totalPriceOrder} voucher={voucherUsed} onPaymentSuccess={() => handleBoughtProd({ isPay: true })} />
       </Modal>
     </>
   );

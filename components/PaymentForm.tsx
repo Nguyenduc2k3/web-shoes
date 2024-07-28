@@ -695,9 +695,11 @@ import Modal from "./Modal";
 export default function PaymentForm({
   price,
   voucher,
+  onPaymentSuccess
 }: {
   voucher?: DataVoucherProps;
   price: number;
+  onPaymentSuccess: () => void; // Add the onPaymentSuccess prop
 }) {
   const [amount, setAmount] = useState(price.toString());
   const [bankCode, setBankCode] = useState("Ví Phantom");
@@ -799,34 +801,14 @@ export default function PaymentForm({
       setSuccessfullyPurchase(true);
       setOpenModalBought(true);
 
-      // Update cart items after successful payment
-      await handleBoughtProd({ isPay: true });
+      // Call the onPaymentSuccess callback
+      onPaymentSuccess();
     } catch (err) {
       console.error("Transaction Error:", err);
       setStatus(`Transaction failed: ${err.message}`);
     }
   };
 
-  const handleBoughtProd = async ({ isPay }: { isPay?: boolean }) => {
-    try {
-      if (token) {
-        const decoded: any = jwt_decode(token);
-        await boughtProduct(String(decoded.id), voucherUsed?.id, isPay);
-
-        if (voucherUsed && Object.keys(voucherUsed).length !== 0) {
-          await UserUsedVoucher({
-            userId: decoded.id,
-            code: voucherUsed?.code,
-          });
-        }
-      } else {
-        setStatus("Unable to process order. User not authenticated.");
-      }
-    } catch (error) {
-      console.log(error);
-      setStatus(`Error processing order: ${error.message}`);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

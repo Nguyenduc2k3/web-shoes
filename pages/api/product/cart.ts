@@ -150,6 +150,7 @@ async function updateBoughtProd(
           id: cartItem.id,
           bought: true,
           finalPrice: 0,
+          status: "pending"
         };
       });
       for (const item of updatedCartItems) {
@@ -158,6 +159,7 @@ async function updateBoughtProd(
           data: {
             bought: true,
             finalPrice: item.finalPrice,
+            status: "processing"
           },
         });
       }
@@ -179,6 +181,7 @@ async function updateBoughtProd(
           data: {
             bought: true,
             finalPrice: item.finalPrice,
+            status: "processing"
           },
         });
       }
@@ -206,6 +209,7 @@ async function updateBoughtProd(
         id: cartItem.id,
         bought: true,
         pricePaid: finalPrice,
+        status: "processing"
       };
     });
 
@@ -216,6 +220,7 @@ async function updateBoughtProd(
         data: {
           bought: true,
           finalPrice: item.pricePaid,
+          status: "processing"
         },
       });
     }
