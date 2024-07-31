@@ -112,6 +112,7 @@ export interface PurchaseProps {
   userId: string;
   bought: boolean;
   status: "pending" | "processing" | "cancelled" | "delivered";
+  solscan?: string;
   createdAt: string;
   updatedAt: string;
   finalPrice?: number;

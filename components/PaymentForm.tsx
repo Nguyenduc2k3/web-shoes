@@ -194,12 +194,6 @@
 //   );
 // }
 
-
-
-
-
-
-
 // import axios from "axios";
 // import { useState } from "react";
 // import Button from "./Button";
@@ -294,10 +288,10 @@
 //       if (walletConnected) {
 //         // Fetch USDC to SOL conversion rate
 //         const usdcToSolRate = await fetchUSDCtoSOLConversionRate();
-        
+
 //         // Convert the amount of USDC to SOL
 //         const amountInSOL = parseFloat(amount) * usdcToSolRate;
-        
+
 //         // Handle SOL payment
 //         await sendSolPayment(amountInSOL);
 //       } else {
@@ -419,15 +413,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
-
-
 // import axios from "axios";
 // import { useState } from "react";
 // import Button from "./Button";
@@ -466,7 +451,6 @@
 //     }
 //   };
 
-
 //   const fetchUSDCtoSOLConversionRate = async (): Promise<number> => {
 //     try {
 //       const response = await axios.get("https://min-api.cryptocompare.com/data/price", {
@@ -475,7 +459,7 @@
 //           tsyms: "SOL"
 //         }
 //       });
-  
+
 //       const usdcToSolRate = response.data.SOL;
 //       return usdcToSolRate;
 //     } catch (error) {
@@ -498,7 +482,7 @@
 //       const walletBalance = await connection.getBalance(window.solana.publicKey);
 //       console.log(`Wallet Balance: ${walletBalance / LAMPORTS_PER_SOL} SOL`);
 //       console.log(`Required Lamports: ${lamports}`);
-      
+
 //       if (walletBalance < lamports) {
 //         setStatus("Insufficient SOL balance to complete the transaction.");
 //         return;
@@ -521,7 +505,6 @@
 //       const signature = await connection.sendRawTransaction(signedTransaction.serialize());
 //       await connection.confirmTransaction(signature);
 
-
 //       toast.success(`Thanh toán thành công ${amount} USDC`);
 //       setStatus(`Transaction successful with signature: ${signature}`);
 //     } catch (err) {
@@ -538,11 +521,11 @@
 //         // Fetch USDC to SOL conversion rate
 //         const usdcToSolRate = await fetchUSDCtoSOLConversionRate();
 //         console.log(`USDC to SOL Rate: ${usdcToSolRate}`);
-        
+
 //         // Convert the amount of USDC to SOL
 //         const amountInSOL = parseFloat(amount) * usdcToSolRate;
 //         console.log(`Amount in SOL: ${amountInSOL}`);
-        
+
 //         // Handle SOL payment
 //         await sendSolPayment(amountInSOL);
 //       } else {
@@ -669,8 +652,6 @@
 
 
 
-
-
 import axios from "axios";
 import { useState } from "react";
 import Button from "./Button";
@@ -695,11 +676,11 @@ import Modal from "./Modal";
 export default function PaymentForm({
   price,
   voucher,
-  onPaymentSuccess
+  onPaymentSuccess,
 }: {
   voucher?: DataVoucherProps;
   price: number;
-  onPaymentSuccess: () => void; // Add the onPaymentSuccess prop
+  onPaymentSuccess: (solscanUrl: string) => void; // Add the onPaymentSuccess prop
 }) {
   const [amount, setAmount] = useState(price.toString());
   const [bankCode, setBankCode] = useState("Ví Phantom");
@@ -712,6 +693,7 @@ export default function PaymentForm({
   const [openModalBought, setOpenModalBought] = useState(false);
   const [voucherUsed, setVoucherUsed] = useState<DataVoucherProps>();
   const [successfullyPurchase, setSuccessfullyPurchase] = useState(false);
+  const [formVisible, setFormVisible] = useState(true); // State to manage form visibility
 
   const connectWallet = async () => {
     if (window.solana && window.solana.isPhantom) {
@@ -774,7 +756,7 @@ export default function PaymentForm({
       }
 
       const destPubkey = new PublicKey(
-        "5i4CEJ5hpwtS1F3bRBdmnkbw17xXpgBqN2GrQV5XBKG7"
+        "5i4CEJ5hpwtS1F3bRBdmnkbw17xXpgBqN2GrQV5XBKG7" // ReceiverID
       );
       const transaction = new Transaction().add(
         SystemProgram.transfer({
@@ -796,19 +778,22 @@ export default function PaymentForm({
       );
       await connection.confirmTransaction(signature);
 
+      // Construct the Solscan URL
+      const solscanUrl = `https://solscan.io/tx/${signature}?cluster=devnet`;
+      console.log(`Solscan URL: ${solscanUrl}`);
+
       toast.success(`Thanh toán thành công ${amount} USDC`);
       setStatus(`Transaction successful with signature: ${signature}`);
       setSuccessfullyPurchase(true);
-      setOpenModalBought(true);
 
       // Call the onPaymentSuccess callback
-      onPaymentSuccess();
+      onPaymentSuccess(solscanUrl);
+      setFormVisible(false); // Hide the form upon successful payment
     } catch (err) {
       console.error("Transaction Error:", err);
       setStatus(`Transaction failed: ${err.message}`);
     }
   };
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -850,155 +835,117 @@ export default function PaymentForm({
 
   return (
     <div className="flex items-center justify-center w-[350px]">
-      <div className="w-full max-w-md space-y-8 shadow">
-        {successfullyPurchase == false && (
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label
-                htmlFor="amount"
-                className="block text-sm font-medium text-white"
-              >
-                Số tiền
-              </label>
-              <input
-                disabled
-                id="amount"
-                name="amount"
-                type="number"
-                value={amount}
-                className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="bankCode"
-                className="block text-sm font-medium text-white"
-              >
-                Mã ngân hàng
-              </label>
-              <input
-                disabled
-                id="bankCode"
-                name="bankCode"
-                type="text"
-                value={bankCode}
-                onChange={(e) => setBankCode(e.target.value)}
-                className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="orderDescription"
-                className="block text-sm font-medium text-white"
-              >
-                Mô tả đơn hàng
-              </label>
-              <textarea
-                id="orderDescription"
-                name="orderDescription"
-                value={orderDescription}
-                onChange={(e) => setOrderDescription(e.target.value)}
-                className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="orderType"
-                className="block text-sm font-medium text-white"
-              >
-                Loại đơn hàng
-              </label>
-              <input
-                disabled
-                id="orderType"
-                name="orderType"
-                type="text"
-                value={orderType}
-                onChange={(e) => setOrderType(e.target.value)}
-                className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="language"
-                className="block text-sm font-medium text-white"
-              >
-                Ngôn ngữ
-              </label>
-              <select
-                id="language"
-                name="language"
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-              >
-                <option value="vn">Tiếng Việt</option>
-                <option value="en">English</option>
-              </select>
-            </div>
-
-            <div>
-              <Button label="Thanh toán" submit className="w-full" />
-            </div>
-          </form>
-        )}
-        {successfullyPurchase === false && (
-          <div className="mt-4 text-center text-white">
-            <button onClick={connectWallet} className="button-9">
-              Connect Wallet
-            </button>
-            <p>{status}</p>
-          </div>
-        )}
-
-        <Modal
-          classClose="hidden"
-          open={openModalBought}
-          setOpen={setOpenModalBought}
-        >
-          <div className="flex flex-col justify-center items-center space-y-8 px-20">
-            <p className="text-white text-xl font-bold">Cám ơn đã mua hàng!</p>
-            <div className="relative">
-              <img className="h-56" src="/images/svg/bought.svg" alt="" />
-              <img
-                className="absolute top-10 right-12 h-36"
-                src="/images/buysucc.png"
-                alt=""
-              />
-            </div>
-            <div className="flex items-center space-x-3 mt-3">
-              <Link href="/product">
-                <p
-                  onClick={() => setOpenModalBought(false)}
-                  className="text-white hover:bg-[rgba(145,158,171,0.08)] flex items-center justify-center space-x-2 min-w-[162px] min-h-[38px] border border-color-primary px-1 py-2 rounded-md"
+      {formVisible && (
+        <div className="w-full max-w-md space-y-8 shadow">
+          {!successfullyPurchase && (
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label
+                  htmlFor="amount"
+                  className="block text-sm font-medium text-white"
                 >
-                  <IoIosArrowBack />{" "}
-                  <span className="font-bold text-sm">Tiếp Tục Mua Hàng</span>
-                </p>
-              </Link>
-              <Link href="/user/purchase">
-                <p
-                  onClick={() => setOpenModalBought(false)}
-                  className="text-white hover:bg-green-700 flex items-center justify-center space-x-2 min-w-[162px] min-h-[38px] bg-green-600 px-1 py-2 rounded-md"
+                  Số tiền
+                </label>
+                <input
+                  disabled
+                  id="amount"
+                  name="amount"
+                  type="number"
+                  value={amount}
+                  className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="bankCode"
+                  className="block text-sm font-medium text-white"
                 >
-                  <IoBagCheckOutline />
-                  <span className="font-bold text-sm">Đơn mua</span>
-                </p>
-              </Link>
+                  Mã ngân hàng
+                </label>
+                <input
+                  disabled
+                  id="bankCode"
+                  name="bankCode"
+                  type="text"
+                  value={bankCode}
+                  onChange={(e) => setBankCode(e.target.value)}
+                  className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="orderDescription"
+                  className="block text-sm font-medium text-white"
+                >
+                  Mô tả đơn hàng
+                </label>
+                <textarea
+                  id="orderDescription"
+                  name="orderDescription"
+                  value={orderDescription}
+                  onChange={(e) => setOrderDescription(e.target.value)}
+                  className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="orderType"
+                  className="block text-sm font-medium text-white"
+                >
+                  Loại đơn hàng
+                </label>
+                <input
+                  disabled
+                  id="orderType"
+                  name="orderType"
+                  type="text"
+                  value={orderType}
+                  onChange={(e) => setOrderType(e.target.value)}
+                  className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="language"
+                  className="block text-sm font-medium text-white"
+                >
+                  Ngôn ngữ
+                </label>
+                <select
+                  id="language"
+                  name="language"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  className="block w-full px-3 py-2 bg-transparent text-white mt-1 border border-white/30 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                >
+                  <option value="vn">Tiếng Việt</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+
+              <div>
+                <Button label="Thanh toán" submit className="w-full" />
+              </div>
+            </form>
+          )}
+          {!successfullyPurchase && (
+            <div className="mt-4 text-center text-white">
+              <button onClick={connectWallet} className="button-9">
+                Connect Wallet
+              </button>
+              <p>{status}</p>
             </div>
-          </div>
-        </Modal>
-      </div>
+          )}
+        </div>
+      )}
       <ToastContainer />
     </div>
   );
 }
-
-

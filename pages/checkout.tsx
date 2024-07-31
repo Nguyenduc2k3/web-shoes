@@ -423,18 +423,66 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
     });
   }, [listProductBuy]);
 
-  const handleBoughtProd = async ({ isPay }: { isPay?: boolean }) => {
+  // const handleBoughtProd = async ({ isPay }: { isPay?: boolean }) => {
+  //   console.log({ voucherUsed });
+  //   try {
+  //     if (token) {
+  //       const decoded: any = jwt_decode(token);
+  //       await boughtProduct(String(decoded.id), voucherUsed?.id, isPay);
+  //       if (voucherUsed && Object.keys(voucherUsed).length !== 0) {
+  //         await UserUsedVoucher({
+  //           userId: decoded.id,
+  //           code: voucherUsed?.code,
+  //         });
+  //       }
+  //     } else {
+  //       console.log({ mailAddress });
+  //       const res = await createOrderGuest({
+  //         buyerAddress: mailAddress?.address ?? "",
+  //         buyerName: mailAddress?.name ?? "",
+  //         buyerPhone: String(mailAddress?.phone ?? ""),
+  //         finalPrice: isPay
+  //           ? 0
+  //           : listProductBuy[0].price * listProductBuy[0].quantity,
+  //         products: JSON.stringify(listProductBuy[0]),
+  //       });
+  //       if (res.status === 200) {
+  //         if (typeof window !== "undefined") {
+  //           sessionStorage.removeItem("guest-prod");
+  //         }
+  //         setOpenModalBought(true);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleBoughtProd = async ({
+    isPay,
+    solscanUrl,
+  }: {
+    isPay?: boolean;
+    solscanUrl?: string;
+  }) => {
     console.log({ voucherUsed });
     try {
       if (token) {
         const decoded: any = jwt_decode(token);
-        await boughtProduct(String(decoded.id), voucherUsed?.id, isPay);
+        await boughtProduct(
+          String(decoded.id),
+          voucherUsed?.id,
+          isPay,
+          solscanUrl
+        ); // Pass solscanUrl here
         if (voucherUsed && Object.keys(voucherUsed).length !== 0) {
           await UserUsedVoucher({
             userId: decoded.id,
             code: voucherUsed?.code,
           });
         }
+        // console.log(solscanUrl)
+        setOpenModalBought(true);
       } else {
         console.log({ mailAddress });
         const res = await createOrderGuest({
@@ -1147,7 +1195,14 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
         title="Thanh toán đơn hàng"
       >
         {/* <PaymentForm price={totalPriceOrder} voucher={voucherUsed} /> */}
-        <PaymentForm price={totalPriceOrder} voucher={voucherUsed} onPaymentSuccess={() => handleBoughtProd({ isPay: true })} />
+        {/* <PaymentForm price={totalPriceOrder} voucher={voucherUsed} onPaymentSuccess={() => handleBoughtProd({ isPay: true })} /> */}
+        <PaymentForm
+          price={totalPriceOrder}
+          voucher={voucherUsed}
+          onPaymentSuccess={(solscanUrl) =>
+            handleBoughtProd({ isPay: true, solscanUrl })
+          }
+        />
       </Modal>
     </>
   );

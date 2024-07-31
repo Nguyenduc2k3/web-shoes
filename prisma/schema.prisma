@@ -62,6 +62,7 @@ model Cart {
   sizeProd     Int
   priceProd    Int
   finalPrice   Int?
+  solscan      String?
   colorProd    String
   quantityProd Int
   imageProd    String

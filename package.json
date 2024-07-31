@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@prisma/client": "^4.16.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@solana/spl-token": "^0.4.8",
     "@solana/wallet-adapter-phantom": "^0.9.24",
@@ -62,6 +61,7 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@prisma/client": "^5.17.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.5.1",
     "@types/dateformat": "^5.0.0",
