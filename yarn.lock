@@ -144,22 +144,46 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
-"@prisma/client@^4.16.2":
-  version "4.16.2"
-  resolved "https://registry.npmjs.org/@prisma/client/-/client-4.16.2.tgz"
-  integrity sha512-qCoEyxv1ZrQ4bKy39GnylE8Zq31IRmm8bNhNbZx7bF2cU5aiCCnSa93J2imF88MBjn7J9eUQneNxUQVJdl/rPQ==
+"@prisma/client@^5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@prisma/client/-/client-5.17.0.tgz"
+  integrity sha512-N2tnyKayT0Zf7mHjwEyE8iG7FwTmXDHFZ1GnNhQp0pJUObsuel4ZZ1XwfuAYkq5mRIiC/Kot0kt0tGCfLJ70Jw==
+
+"@prisma/debug@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@prisma/debug/-/debug-5.17.0.tgz"
+  integrity sha512-l7+AteR3P8FXiYyo496zkuoiJ5r9jLQEdUuxIxNCN1ud8rdbH3GTxm+f+dCyaSv9l9WY+29L9czaVRXz9mULfg==
+
+"@prisma/engines-version@5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053":
+  version "5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053"
+  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053.tgz"
+  integrity sha512-tUuxZZysZDcrk5oaNOdrBnnkoTtmNQPkzINFDjz7eG6vcs9AVDmA/F6K5Plsb2aQc/l5M2EnFqn3htng9FA4hg==
+
+"@prisma/engines@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@prisma/engines/-/engines-5.17.0.tgz"
+  integrity sha512-+r+Nf+JP210Jur+/X8SIPLtz+uW9YA4QO5IXA+KcSOBe/shT47bCcRMTYCbOESw3FFYFTwe7vU6KTWHKPiwvtg==
   dependencies:
-    "@prisma/engines-version" "4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81"
+    "@prisma/debug" "5.17.0"
+    "@prisma/engines-version" "5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053"
+    "@prisma/fetch-engine" "5.17.0"
+    "@prisma/get-platform" "5.17.0"
 
-"@prisma/engines-version@4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81":
-  version "4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81"
-  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81.tgz"
-  integrity sha512-q617EUWfRIDTriWADZ4YiWRZXCa/WuhNgLTVd+HqWLffjMSPzyM5uOWoauX91wvQClSKZU4pzI4JJLQ9Kl62Qg==
+"@prisma/fetch-engine@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-5.17.0.tgz"
+  integrity sha512-ESxiOaHuC488ilLPnrv/tM2KrPhQB5TRris/IeIV4ZvUuKeaicCl4Xj/JCQeG9IlxqOgf1cCg5h5vAzlewN91Q==
+  dependencies:
+    "@prisma/debug" "5.17.0"
+    "@prisma/engines-version" "5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053"
+    "@prisma/get-platform" "5.17.0"
 
-"@prisma/engines@4.15.0":
-  version "4.15.0"
-  resolved "https://registry.npmjs.org/@prisma/engines/-/engines-4.15.0.tgz"
-  integrity sha512-FTaOCGs0LL0OW68juZlGxFtYviZa4xdQj/rQEdat2txw0s3Vu/saAPKjNVXfIgUsGXmQ72HPgNr6935/P8FNAA==
+"@prisma/get-platform@5.17.0":
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/@prisma/get-platform/-/get-platform-5.17.0.tgz"
+  integrity sha512-UlDgbRozCP1rfJ5Tlkf3Cnftb6srGrEQ4Nm3og+1Se2gWmCZ0hmPIi+tQikGDUVLlvOWx3Gyi9LzgRP+HTXV9w==
+  dependencies:
+    "@prisma/debug" "5.17.0"
 
 "@reduxjs/toolkit@^1.9.1":
   version "1.9.1"
@@ -176,14 +200,206 @@
   resolved "https://registry.npmjs.org/@remirror/core-constants/-/core-constants-2.0.2.tgz"
   integrity sha512-dyHY+sMF0ihPus3O27ODd4+agdHMEmuRdyiZJ2CCWjPV5UFmn17ZbElvk6WOGVE4rdCJKZQCrPV2BcikOMLUGQ==
 
-"@solana/buffer-layout@^4.0.1":
+"@solana/buffer-layout-utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/@solana/buffer-layout-utils/-/buffer-layout-utils-0.2.0.tgz"
+  integrity sha512-szG4sxgJGktbuZYDg2FfNmkMi0DYQoVjN2h7ta1W1hPrwzarcFLBq9UpX1UjNXsNpT9dn+chgprtWGioUAr4/g==
+  dependencies:
+    "@solana/buffer-layout" "^4.0.0"
+    "@solana/web3.js" "^1.32.0"
+    bigint-buffer "^1.1.5"
+    bignumber.js "^9.0.1"
+
+"@solana/buffer-layout@^4.0.0", "@solana/buffer-layout@^4.0.1":
   version "4.0.1"
   resolved "https://registry.npmjs.org/@solana/buffer-layout/-/buffer-layout-4.0.1.tgz"
   integrity sha512-E1ImOIAD1tBZFRdjeM4/pzTiTApC0AOBGwyAMS4fwIodCWArzJ3DWdoh8cKxeFM2fElkxBh2Aqts1BPC373rHA==
   dependencies:
     buffer "~6.0.3"
 
-"@solana/web3.js@^1.95.1":
+"@solana/codecs-core@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/codecs-core/-/codecs-core-2.0.0-preview.2.tgz"
+  integrity sha512-gLhCJXieSCrAU7acUJjbXl+IbGnqovvxQLlimztPoGgfLQ1wFYu+XJswrEVQqknZYK1pgxpxH3rZ+OKFs0ndQg==
+  dependencies:
+    "@solana/errors" "2.0.0-preview.2"
+
+"@solana/codecs-core@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/codecs-core/-/codecs-core-2.0.0-preview.4.tgz"
+  integrity sha512-A0VVuDDA5kNKZUinOqHxJQK32aKTucaVbvn31YenGzHX1gPqq+SOnFwgaEY6pq4XEopSmaK16w938ZQS8IvCnw==
+  dependencies:
+    "@solana/errors" "2.0.0-preview.4"
+
+"@solana/codecs-data-structures@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/codecs-data-structures/-/codecs-data-structures-2.0.0-preview.2.tgz"
+  integrity sha512-Xf5vIfromOZo94Q8HbR04TbgTwzigqrKII0GjYr21K7rb3nba4hUW2ir8kguY7HWFBcjHGlU5x3MevKBOLp3Zg==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.2"
+    "@solana/codecs-numbers" "2.0.0-preview.2"
+    "@solana/errors" "2.0.0-preview.2"
+
+"@solana/codecs-data-structures@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/codecs-data-structures/-/codecs-data-structures-2.0.0-preview.4.tgz"
+  integrity sha512-nt2k2eTeyzlI/ccutPcG36M/J8NAYfxBPI9h/nQjgJ+M+IgOKi31JV8StDDlG/1XvY0zyqugV3I0r3KAbZRJpA==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.4"
+    "@solana/codecs-numbers" "2.0.0-preview.4"
+    "@solana/errors" "2.0.0-preview.4"
+
+"@solana/codecs-numbers@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/codecs-numbers/-/codecs-numbers-2.0.0-preview.2.tgz"
+  integrity sha512-aLZnDTf43z4qOnpTcDsUVy1Ci9im1Md8thWipSWbE+WM9ojZAx528oAql+Cv8M8N+6ALKwgVRhPZkto6E59ARw==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.2"
+    "@solana/errors" "2.0.0-preview.2"
+
+"@solana/codecs-numbers@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/codecs-numbers/-/codecs-numbers-2.0.0-preview.4.tgz"
+  integrity sha512-Q061rLtMadsO7uxpguT+Z7G4UHnjQ6moVIxAQxR58nLxDPCC7MB1Pk106/Z7NDhDLHTcd18uO6DZ7ajHZEn2XQ==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.4"
+    "@solana/errors" "2.0.0-preview.4"
+
+"@solana/codecs-strings@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/codecs-strings/-/codecs-strings-2.0.0-preview.2.tgz"
+  integrity sha512-EgBwY+lIaHHgMJIqVOGHfIfpdmmUDNoNO/GAUGeFPf+q0dF+DtwhJPEMShhzh64X2MeCZcmSO6Kinx0Bvmmz2g==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.2"
+    "@solana/codecs-numbers" "2.0.0-preview.2"
+    "@solana/errors" "2.0.0-preview.2"
+
+"@solana/codecs-strings@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/codecs-strings/-/codecs-strings-2.0.0-preview.4.tgz"
+  integrity sha512-YDbsQePRWm+xnrfS64losSGRg8Wb76cjK1K6qfR8LPmdwIC3787x9uW5/E4icl/k+9nwgbIRXZ65lpF+ucZUnw==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.4"
+    "@solana/codecs-numbers" "2.0.0-preview.4"
+    "@solana/errors" "2.0.0-preview.4"
+
+"@solana/codecs@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/codecs/-/codecs-2.0.0-preview.2.tgz"
+  integrity sha512-4HHzCD5+pOSmSB71X6w9ptweV48Zj1Vqhe732+pcAQ2cMNnN0gMPMdDq7j3YwaZDZ7yrILVV/3+HTnfT77t2yA==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.2"
+    "@solana/codecs-data-structures" "2.0.0-preview.2"
+    "@solana/codecs-numbers" "2.0.0-preview.2"
+    "@solana/codecs-strings" "2.0.0-preview.2"
+    "@solana/options" "2.0.0-preview.2"
+
+"@solana/codecs@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/codecs/-/codecs-2.0.0-preview.4.tgz"
+  integrity sha512-gLMupqI4i+G4uPi2SGF/Tc1aXcviZF2ybC81x7Q/fARamNSgNOCUUoSCg9nWu1Gid6+UhA7LH80sWI8XjKaRog==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.4"
+    "@solana/codecs-data-structures" "2.0.0-preview.4"
+    "@solana/codecs-numbers" "2.0.0-preview.4"
+    "@solana/codecs-strings" "2.0.0-preview.4"
+    "@solana/options" "2.0.0-preview.4"
+
+"@solana/errors@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/errors/-/errors-2.0.0-preview.2.tgz"
+  integrity sha512-H2DZ1l3iYF5Rp5pPbJpmmtCauWeQXRJapkDg8epQ8BJ7cA2Ut/QEtC3CMmw/iMTcuS6uemFNLcWvlOfoQhvQuA==
+  dependencies:
+    chalk "^5.3.0"
+    commander "^12.0.0"
+
+"@solana/errors@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/errors/-/errors-2.0.0-preview.4.tgz"
+  integrity sha512-kadtlbRv2LCWr8A9V22On15Us7Nn8BvqNaOB4hXsTB3O0fU40D1ru2l+cReqLcRPij4znqlRzW9Xi0m6J5DIhA==
+  dependencies:
+    chalk "^5.3.0"
+    commander "^12.1.0"
+
+"@solana/options@2.0.0-preview.2":
+  version "2.0.0-preview.2"
+  resolved "https://registry.npmjs.org/@solana/options/-/options-2.0.0-preview.2.tgz"
+  integrity sha512-FAHqEeH0cVsUOTzjl5OfUBw2cyT8d5Oekx4xcn5hn+NyPAfQJgM3CEThzgRD6Q/4mM5pVUnND3oK/Mt1RzSE/w==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.2"
+    "@solana/codecs-numbers" "2.0.0-preview.2"
+
+"@solana/options@2.0.0-preview.4":
+  version "2.0.0-preview.4"
+  resolved "https://registry.npmjs.org/@solana/options/-/options-2.0.0-preview.4.tgz"
+  integrity sha512-tv2O/Frxql/wSe3jbzi5nVicIWIus/BftH+5ZR+r9r3FO0/htEllZS5Q9XdbmSboHu+St87584JXeDx3xm4jaA==
+  dependencies:
+    "@solana/codecs-core" "2.0.0-preview.4"
+    "@solana/codecs-data-structures" "2.0.0-preview.4"
+    "@solana/codecs-numbers" "2.0.0-preview.4"
+    "@solana/codecs-strings" "2.0.0-preview.4"
+    "@solana/errors" "2.0.0-preview.4"
+
+"@solana/spl-token-group@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/@solana/spl-token-group/-/spl-token-group-0.0.5.tgz"
+  integrity sha512-CLJnWEcdoUBpQJfx9WEbX3h6nTdNiUzswfFdkABUik7HVwSNA98u5AYvBVK2H93d9PGMOHAak2lHW9xr+zAJGQ==
+  dependencies:
+    "@solana/codecs" "2.0.0-preview.4"
+    "@solana/spl-type-length-value" "0.1.0"
+
+"@solana/spl-token-metadata@^0.1.3":
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/@solana/spl-token-metadata/-/spl-token-metadata-0.1.4.tgz"
+  integrity sha512-N3gZ8DlW6NWDV28+vCCDJoTqaCZiF/jDUnk3o8GRkAFzHObiR60Bs1gXHBa8zCPdvOwiG6Z3dg5pg7+RW6XNsQ==
+  dependencies:
+    "@solana/codecs" "2.0.0-preview.2"
+    "@solana/spl-type-length-value" "0.1.0"
+
+"@solana/spl-token@^0.4.8":
+  version "0.4.8"
+  resolved "https://registry.npmjs.org/@solana/spl-token/-/spl-token-0.4.8.tgz"
+  integrity sha512-RO0JD9vPRi4LsAbMUdNbDJ5/cv2z11MGhtAvFeRzT4+hAGE/FUzRi0tkkWtuCfSIU3twC6CtmAihRp/+XXjWsA==
+  dependencies:
+    "@solana/buffer-layout" "^4.0.0"
+    "@solana/buffer-layout-utils" "^0.2.0"
+    "@solana/spl-token-group" "^0.0.5"
+    "@solana/spl-token-metadata" "^0.1.3"
+    buffer "^6.0.3"
+
+"@solana/spl-type-length-value@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/@solana/spl-type-length-value/-/spl-type-length-value-0.1.0.tgz"
+  integrity sha512-JBMGB0oR4lPttOZ5XiUGyvylwLQjt1CPJa6qQ5oM+MBCndfjz2TKKkw0eATlLLcYmq1jBVsNlJ2cD6ns2GR7lA==
+  dependencies:
+    buffer "^6.0.3"
+
+"@solana/wallet-adapter-base@^0.9.23":
+  version "0.9.23"
+  resolved "https://registry.npmjs.org/@solana/wallet-adapter-base/-/wallet-adapter-base-0.9.23.tgz"
+  integrity sha512-apqMuYwFp1jFi55NxDfvXUX2x1T0Zh07MxhZ/nCCTGys5raSfYUh82zen2BLv8BSDj/JxZ2P/s7jrQZGrX8uAw==
+  dependencies:
+    "@solana/wallet-standard-features" "^1.1.0"
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
+    eventemitter3 "^4.0.7"
+
+"@solana/wallet-adapter-phantom@^0.9.24":
+  version "0.9.24"
+  resolved "https://registry.npmjs.org/@solana/wallet-adapter-phantom/-/wallet-adapter-phantom-0.9.24.tgz"
+  integrity sha512-D24AxRHmRJ4AYoRvijbiuUb9LmC4xLGKLMSJS2ly+zGxVmaPASPM/ThaY/DlYTDL31QvkYtl8RzSR4yIU1gpLg==
+  dependencies:
+    "@solana/wallet-adapter-base" "^0.9.23"
+
+"@solana/wallet-standard-features@^1.1.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@solana/wallet-standard-features/-/wallet-standard-features-1.2.0.tgz"
+  integrity sha512-tUd9srDLkRpe1BYg7we+c4UhRQkq+XQWswsr/L1xfGmoRDF47BPSXf4zE7ZU2GRBGvxtGt7lwJVAufQyQYhxTQ==
+  dependencies:
+    "@wallet-standard/base" "^1.0.1"
+    "@wallet-standard/features" "^1.0.3"
+
+"@solana/web3.js@^1.32.0", "@solana/web3.js@^1.77.3", "@solana/web3.js@^1.91.6", "@solana/web3.js@^1.94.0", "@solana/web3.js@^1.95.1":
   version "1.95.1"
   resolved "https://registry.npmjs.org/@solana/web3.js/-/web3.js-1.95.1.tgz"
   integrity sha512-mRX/AjV6QbiOXpWcy5Rz1ZWEH2lVkwO7T0pcv9t97ACpv3/i3tPiqXwk0JIZgSR3wOSTiT26JfygnJH2ulS6dQ==
@@ -538,6 +754,18 @@
   dependencies:
     "@types/node" "*"
 
+"@wallet-standard/base@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@wallet-standard/base/-/base-1.0.1.tgz"
+  integrity sha512-1To3ekMfzhYxe0Yhkpri+Fedq0SYcfrOfJi3vbLjMwF2qiKPjTGLwZkf2C9ftdQmxES+hmxhBzTwF4KgcOwf8w==
+
+"@wallet-standard/features@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@wallet-standard/features/-/features-1.0.3.tgz"
+  integrity sha512-m8475I6W5LTatTZuUz5JJNK42wFRgkJTB0I9tkruMwfqBF2UN2eomkYNVf9RbrsROelCRzSFmugqjKZBFaubsA==
+  dependencies:
+    "@wallet-standard/base" "^1.0.1"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz"
@@ -682,6 +910,11 @@ bigint-buffer@^1.1.5:
   dependencies:
     bindings "^1.3.0"
 
+bignumber.js@^9.0.1:
+  version "9.1.2"
+  resolved "https://registry.npmjs.org/bignumber.js/-/bignumber.js-9.1.2.tgz"
+  integrity sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==
+
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz"
@@ -781,6 +1014,11 @@ caniuse-lite@^1.0.30001400, caniuse-lite@^1.0.30001406, caniuse-lite@^1.0.300014
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001439.tgz"
   integrity sha512-1MgUzEkoMO6gKfXflStpYgZDlFM7M/ck/bgfVCACO5vnAf0fXoNVHdWtqGU+MYca+4bL9Z5bpOVmR33cWW9G2A==
 
+chalk@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/chalk/-/chalk-5.3.0.tgz"
+  integrity sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==
+
 chokidar@^3.5.3, "chokidar@>=3.0.0 <4.0.0":
   version "3.5.3"
   resolved "https://registry.npmjs.org/chokidar/-/chokidar-3.5.3.tgz"
@@ -827,6 +1065,16 @@ combined-stream@^1.0.8:
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
   dependencies:
     delayed-stream "~1.0.0"
+
+commander@^12.0.0:
+  version "12.1.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-12.1.0.tgz"
+  integrity sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==
+
+commander@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-12.1.0.tgz"
+  integrity sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==
 
 commander@^2.20.3:
   version "2.20.3"
@@ -1008,6 +1256,11 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
+eventemitter3@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
+  integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
 eventemitter3@^5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/eventemitter3/-/eventemitter3-5.0.1.tgz"
@@ -1038,6 +1291,11 @@ fast-stable-stringify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fast-stable-stringify/-/fast-stable-stringify-1.0.0.tgz"
   integrity sha512-wpYMUmFu5f00Sm0cj2pfivpmawLZ0NKdviQ4w9zJeR8JVtOpOxHmLaJuj0vxvGqMJQWyP/COUkF75/57OKyRag==
+
+fastestsmallesttextencoderdecoder@^1.0.22:
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/fastestsmallesttextencoderdecoder/-/fastestsmallesttextencoderdecoder-1.0.22.tgz"
+  integrity sha512-Pb8d48e+oIuY4MaM64Cd7OW1gt4nxCHs7/ddPPZ/Ic3sg8yVGM7O9wDvZ7us6ScaUupzM+pfBolwtYhN1IxBIw==
 
 fastq@^1.6.0:
   version "1.14.0"
@@ -1711,12 +1969,12 @@ postcss@8.4.14:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-prisma@*, prisma@^4.15.0:
-  version "4.15.0"
-  resolved "https://registry.npmjs.org/prisma/-/prisma-4.15.0.tgz"
-  integrity sha512-iKZZpobPl48gTcSZVawLMQ3lEy6BnXwtoMj7hluoGFYu2kQ6F9LBuBrUyF95zRVnNo8/3KzLXJXJ5TEnLSJFiA==
+prisma@*, prisma@^5.17.0:
+  version "5.17.0"
+  resolved "https://registry.npmjs.org/prisma/-/prisma-5.17.0.tgz"
+  integrity sha512-m4UWkN5lBE6yevqeOxEvmepnL5cNPEjzMw2IqDB59AcEV6w7D8vGljDLd1gPFH+W6gUxw9x7/RmN5dCS/WTPxA==
   dependencies:
-    "@prisma/engines" "4.15.0"
+    "@prisma/engines" "5.17.0"
 
 prop-types@^15.5.7, prop-types@^15.7.2:
   version "15.8.1"
@@ -1980,10 +2238,10 @@ react-redux@*, "react-redux@^7.2.1 || ^8.0.2", react-redux@^8.0.5:
     react-is "^18.0.0"
     use-sync-external-store "^1.0.0"
 
-react-toastify@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-9.1.1.tgz"
-  integrity sha512-pkFCla1z3ve045qvjEmn2xOJOy4ZciwRXm1oMPULVkELi5aJdHCN/FHnuqXq8IwGDLB7PPk2/J6uP9D8ejuiRw==
+react-toastify@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-9.1.3.tgz"
+  integrity sha512-fPfb8ghtn/XMxw3LkxQBk3IyagNpF/LIKjOBflbexr2AWxAH1MJgvnESwEwBn9liLFXgTKWgBSdZpw9m4OTHTg==
   dependencies:
     clsx "^1.1.1"
 
@@ -2348,6 +2606,11 @@ tslib@^2.3.1, tslib@^2.4.0, tslib@2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+typescript@>=5:
+  version "5.5.4"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz"
+  integrity sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==
 
 typescript@4.9.4:
   version "4.9.4"

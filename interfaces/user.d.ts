@@ -107,6 +107,7 @@ export interface newUser {
     email: string;
     firstName: string;
     lastName: string;
+    solanaPublicKey?: string; 
     profile: {
       address: string;
       birthDay: Date;
@@ -121,7 +122,7 @@ export interface newUser {
     email: string;
     firstName: string;
     lastName: string;
-    solanaPublicKey?: string; // Thêm thuộc tính solanaPublicKey nếu cần thiết
+    // solanaPublicKey?: string; // Thêm thuộc tính solanaPublicKey nếu cần thiết
     address?: string;
     avatar?: string;
     birthDay?: string;

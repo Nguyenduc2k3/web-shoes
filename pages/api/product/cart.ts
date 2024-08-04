@@ -22,10 +22,10 @@ export default function Cart(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === "PUT") {
-    const { id, idVoucher, isPay } = req.body;
+    const { id, idVoucher, isPay, solscanUrl } = req.body;
     console.log("req.body", req.body);
     if (!id) return;
-    updateBoughtProd(res, id, idVoucher, isPay);
+    updateBoughtProd(res, id, idVoucher, isPay, solscanUrl);
   }
 }
 
@@ -132,7 +132,8 @@ async function updateBoughtProd(
   res: NextApiResponse,
   id: string,
   idVoucher?: string,
-  isPay?: boolean
+  isPay?: boolean,
+  solscanUrl?: string
 ) {
   try {
     console.log("isPay", isPay);
@@ -150,6 +151,8 @@ async function updateBoughtProd(
           id: cartItem.id,
           bought: true,
           finalPrice: 0,
+          status: "pending",
+          // solscan: "",
         };
       });
       for (const item of updatedCartItems) {
@@ -158,6 +161,8 @@ async function updateBoughtProd(
           data: {
             bought: true,
             finalPrice: item.finalPrice,
+            status: "processing",
+            solscan: solscanUrl,
           },
         });
       }
@@ -179,6 +184,8 @@ async function updateBoughtProd(
           data: {
             bought: true,
             finalPrice: item.finalPrice,
+            status: "pending",
+            solscan: solscanUrl,
           },
         });
       }
@@ -206,6 +213,7 @@ async function updateBoughtProd(
         id: cartItem.id,
         bought: true,
         pricePaid: finalPrice,
+        status: "pending"
       };
     });
 
@@ -216,6 +224,8 @@ async function updateBoughtProd(
         data: {
           bought: true,
           finalPrice: item.pricePaid,
+          status: "pending",
+          solscan: solscanUrl,
         },
       });
     }

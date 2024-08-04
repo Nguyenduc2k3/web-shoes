@@ -37,9 +37,7 @@ import { Keypair } from "@solana/web3.js";
 
 export function CreateAcc(user: newUser) {
   console.log({ user });
-  const keypair = Keypair.generate();
-  const blockchainId = keypair.publicKey.toString();
-  return axios.post("/api/user/register", { user, blockchainId });
+  return axios.post("/api/user/register", { user });
 }
 
 export function LoginUser(user: UserWithBlockchain) {

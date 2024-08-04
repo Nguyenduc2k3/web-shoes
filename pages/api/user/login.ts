@@ -142,28 +142,170 @@
 
 
 
+// import type { NextApiRequest, NextApiResponse } from 'next';
+// import bcrypt from 'bcrypt';
+// import prisma from './../../../lib/prisma';
+// import jwt from 'jsonwebtoken';
+// import { serialize } from 'cookie';
+
+// export default async function Login(
+//     req: NextApiRequest,
+//     res: NextApiResponse
+// ) {
+//     if (req.method === 'POST') {
+//         const user = req.body.user;
+//         if (!user) {
+//             return res.status(400).json({ error: 'User data is required' });
+//         }
+//         await loginUser(user, res);
+//     } else {
+//         res.status(405).json({ error: 'Method not allowed' });
+//     }
+// }
+
+// async function loginUser(user: { email: string; password: string }, res: NextApiResponse) {
+//     try {
+//         const secret = '12345';
+//         const userCheck = await prisma.user.findUnique({
+//             where: {
+//                 email: user.email,
+//             },
+//         });
+
+//         if (!userCheck) {
+//             return res.status(400).json({ error: 'Invalid email' });
+//         }
+
+//         const validPassword = await bcrypt.compare(
+//             user.password,
+//             userCheck.password
+//         );
+
+//         if (!validPassword) {
+//             return res.status(400).json({ error: 'Invalid password' });
+//         }
+
+//         const token = jwt.sign(
+//             {
+//                 id: userCheck.id,
+//                 email: userCheck.email,
+//                 firstName: userCheck.firstName,
+//                 lastName: userCheck.lastName,
+//                 admin: userCheck.admin,
+//                 solanaPublicKey: userCheck.solanaPublicKey,
+//             },
+//             secret
+//         );
+
+//         res.setHeader('Set-Cookie', serialize('token', token, { path: '/' }));
+//         res.status(200).json({
+//             id: userCheck.id,
+//             email: userCheck.email,
+//             name: userCheck.lastName,
+//             admin: userCheck.admin,
+//             solanaPublicKey: userCheck.solanaPublicKey,
+//         });
+//     } catch (error) {
+//         console.error('Login error:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// }
+
+
+
+
+// import type { NextApiRequest, NextApiResponse } from 'next';
+// import bcrypt from 'bcrypt';
+// import prisma from './../../../lib/prisma';
+// import jwt from 'jsonwebtoken';
+// import { serialize } from 'cookie';
+
+// export default async function Login(req: NextApiRequest, res: NextApiResponse) {
+//     if (req.method === 'POST') {
+//         const { email, password, solanaPublicKey } = req.body;
+//         if (!email || !password || !solanaPublicKey) {
+//             return res.status(400).json({ error: 'Email, password, and Solana public key are required' });
+//         }
+//         await loginUser({ email, password, solanaPublicKey }, res);
+//     } else {
+//         res.status(405).json({ error: 'Method not allowed' });
+//     }
+// }
+
+// async function loginUser(user: { email: string; password: string; solanaPublicKey: string }, res: NextApiResponse) {
+//     try {
+//         const secret = '12345';
+//         const userCheck = await prisma.user.findUnique({
+//             where: {
+//                 email: user.email,
+//             },
+//         });
+
+//         if (!userCheck) {
+//             return res.status(400).json({ error: 'Invalid email' });
+//         }
+
+//         const validPassword = await bcrypt.compare(
+//             user.password,
+//             userCheck.password
+//         );
+
+//         if (!validPassword) {
+//             return res.status(400).json({ error: 'Invalid password' });
+//         }
+
+//         if (user.solanaPublicKey !== userCheck.solanaPublicKey) {
+//             return res.status(400).json({ error: 'Invalid Solana public key' });
+//         }
+
+//         const token = jwt.sign(
+//             {
+//                 id: userCheck.id,
+//                 email: userCheck.email,
+//                 firstName: userCheck.firstName,
+//                 lastName: userCheck.lastName,
+//                 admin: userCheck.admin,
+//                 solanaPublicKey: userCheck.solanaPublicKey,
+//             },
+//             secret
+//         );
+
+//         res.setHeader('Set-Cookie', serialize('token', token, { path: '/' }));
+//         res.status(200).json({
+//             id: userCheck.id,
+//             email: userCheck.email,
+//             name: userCheck.lastName,
+//             admin: userCheck.admin,
+//             solanaPublicKey: userCheck.solanaPublicKey,
+//         });
+//     } catch (error) {
+//         console.error('Login error:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// }
+
+
+
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import prisma from './../../../lib/prisma';
 import jwt from 'jsonwebtoken';
 import { serialize } from 'cookie';
 
-export default async function Login(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function Login(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        const user = req.body.user;
-        if (!user) {
-            return res.status(400).json({ error: 'User data is required' });
+        const { email, password, solanaPublicKey } = req.body;
+        if (!email || !password || !solanaPublicKey) {
+            return res.status(400).json({ error: 'Email, password, and Solana public key are required' });
         }
-        await loginUser(user, res);
+        await loginUser({ email, password, solanaPublicKey }, res);
     } else {
         res.status(405).json({ error: 'Method not allowed' });
     }
 }
 
-async function loginUser(user: { email: string; password: string }, res: NextApiResponse) {
+async function loginUser(user: { email: string; password: string; solanaPublicKey: string }, res: NextApiResponse) {
     try {
         const secret = '12345';
         const userCheck = await prisma.user.findUnique({
@@ -183,6 +325,10 @@ async function loginUser(user: { email: string; password: string }, res: NextApi
 
         if (!validPassword) {
             return res.status(400).json({ error: 'Invalid password' });
+        }
+
+        if (user.solanaPublicKey !== userCheck.solanaPublicKey) {
+            return res.status(400).json({ error: 'Invalid Solana public key' });
         }
 
         const token = jwt.sign(

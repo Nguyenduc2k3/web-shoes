@@ -58,10 +58,11 @@ export const deleteProdCart = async (productDelete: IdProdCart) => {
 export const boughtProduct = async (
   id: string,
   idVoucher?: string,
-  isPay?: boolean
+  isPay?: boolean,
+  solscanUrl?:string
 ) => {
   try {
-    return await axios.put("/api/product/cart", { id, idVoucher, isPay });
+    return await axios.put("/api/product/cart", { id, idVoucher, isPay, solscanUrl });
   } catch (error) {
     console.log(error);
   }

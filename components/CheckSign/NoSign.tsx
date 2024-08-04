@@ -16,11 +16,6 @@ const NoSign = () => {
           Đăng ký
         </button>
       </Link>
-      <Link href="wallet">
-        <button className="text-white text-sm font-semibold border-2 hover:bg-[rgb(0,171,85)] hover:bg-opacity-10 border-[rgb(0,171,85)] px-3 py-2 rounded-lg">
-          Connect Wallet
-        </button>
-      </Link>
     </div>
   );
 };

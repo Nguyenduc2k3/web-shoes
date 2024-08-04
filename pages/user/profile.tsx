@@ -44,6 +44,7 @@ const Profile = ({ loading }: { loading: Boolean }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [solanaPublicKey, setSolanaPublicKey] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<number>();
@@ -139,6 +140,7 @@ const Profile = ({ loading }: { loading: Boolean }) => {
       setFirstName(profile.firstName);
       setLastName(profile.lastName);
       setEmail(profile.email);
+      setSolanaPublicKey(profile.solanaPublicKey);
       setAddress(profile.profile.address);
       setCity(profile.profile.city);
       setPhoneNumber(profile.profile.phoneNumber);
@@ -254,6 +256,10 @@ const Profile = ({ loading }: { loading: Boolean }) => {
             <div className="relative h-full flex items-center space-x-2 text-white">
               <span>Email:</span>
               <span className="text-sm font-semibold">{email}</span>
+            </div>
+            <div className="relative h-full flex items-center space-x-2 text-white">
+              <span>WalletID:</span>
+              <span className="text-sm font-semibold">{solanaPublicKey}</span>
             </div>
           </div>
 

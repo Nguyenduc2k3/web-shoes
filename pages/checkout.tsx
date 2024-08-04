@@ -52,6 +52,10 @@ const payment = [
     title: "Thanh toán bằng VNPAY",
     des: "Thanh toán bằng ví VNPAY.",
   },
+  {
+    title: "Thanh toán bằng SOLANA",
+    des: "Thanh toán bằng ví PHANTOM.",
+  },
 ];
 const listCity = [
   "Hà Nội",
@@ -330,7 +334,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
           </button>
         </div>,
         <div>
-          {(item?.priceProd * item?.quantityProd).toLocaleString("vi")} đ
+          {(item?.priceProd * item?.quantityProd).toLocaleString("vi")} USDC
         </div>,
         <div
           // onClick={() => handleDeleteProdCart(item?.idProd, item?.userId)}
@@ -393,7 +397,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             </div>
           </div>
         </div>,
-        <div>{item?.price?.toLocaleString("vi")} đ</div>,
+        <div>{item?.price?.toLocaleString("vi")} USDC</div>,
         <div className="relative hover:border-white select-none flex items-center rounded-lg w-[78px] py-1 justify-around border border-[rgba(145,158,171,0.32)]">
           <button>
             <BiMinus onClick={() => handleDecreaseQuantity()} />
@@ -404,7 +408,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             <BiPlus onClick={handleIncreaseQuantity} />
           </button>
         </div>,
-        <div>{(item?.price * item?.quantity).toLocaleString("vi")} đ</div>,
+        <div>{(item?.price * item?.quantity).toLocaleString("vi")} USDC</div>,
         <div
           // onClick={() => handleDeleteProdCart(item?.idProd, item?.userId)}
           onClick={() => {
@@ -419,18 +423,65 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
     });
   }, [listProductBuy]);
 
-  const handleBoughtProd = async ({ isPay }: { isPay?: boolean }) => {
+  // const handleBoughtProd = async ({ isPay }: { isPay?: boolean }) => {
+  //   console.log({ voucherUsed });
+  //   try {
+  //     if (token) {
+  //       const decoded: any = jwt_decode(token);
+  //       await boughtProduct(String(decoded.id), voucherUsed?.id, isPay);
+  //       if (voucherUsed && Object.keys(voucherUsed).length !== 0) {
+  //         await UserUsedVoucher({
+  //           userId: decoded.id,
+  //           code: voucherUsed?.code,
+  //         });
+  //       }
+  //     } else {
+  //       console.log({ mailAddress });
+  //       const res = await createOrderGuest({
+  //         buyerAddress: mailAddress?.address ?? "",
+  //         buyerName: mailAddress?.name ?? "",
+  //         buyerPhone: String(mailAddress?.phone ?? ""),
+  //         finalPrice: isPay
+  //           ? 0
+  //           : listProductBuy[0].price * listProductBuy[0].quantity,
+  //         products: JSON.stringify(listProductBuy[0]),
+  //       });
+  //       if (res.status === 200) {
+  //         if (typeof window !== "undefined") {
+  //           sessionStorage.removeItem("guest-prod");
+  //         }
+  //         setOpenModalBought(true);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleBoughtProd = async ({
+    isPay,
+    solscanUrl,
+  }: {
+    isPay?: boolean;
+    solscanUrl?: string;
+  }) => {
     console.log({ voucherUsed });
     try {
       if (token) {
         const decoded: any = jwt_decode(token);
-        await boughtProduct(String(decoded.id), voucherUsed?.id, isPay);
+        await boughtProduct(
+          String(decoded.id),
+          voucherUsed?.id,
+          isPay,
+          solscanUrl
+        ); // Pass solscanUrl here
         if (voucherUsed && Object.keys(voucherUsed).length !== 0) {
           await UserUsedVoucher({
             userId: decoded.id,
             code: voucherUsed?.code,
           });
         }
+        // console.log(solscanUrl)
         setOpenModalBought(true);
       } else {
         console.log({ mailAddress });
@@ -1041,7 +1092,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                 <p className="flex justify-between items-center">
                   <span className="text-[rgb(145,158,171)]">Tổng phụ thu</span>
                   <span className="font-semibold">
-                    {previewPrice.toLocaleString("vi")} đ
+                    {previewPrice.toLocaleString("vi")} USDC
                   </span>
                 </p>
                 <p className="flex justify-between items-center">
@@ -1056,7 +1107,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                   <p className="flex justify-between items-center">
                     <span className="text-[rgb(145,158,171)]">Giảm giá</span>{" "}
                     <span className="font-semibold">
-                      - {voucherUsed?.discount?.toLocaleString("vi")}đ
+                      - {voucherUsed?.discount?.toLocaleString("vi")}USDC
                     </span>
                   </p>
                 )}
@@ -1064,7 +1115,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
               <div className="flex items-center justify-between mt-4">
                 <p className="font-bold">Tổng đơn hàng</p>
                 <span className="font-semibold text-red-500">
-                  {totalPriceOrder.toLocaleString("vi")} đ
+                  {totalPriceOrder.toLocaleString("vi")} USDC
                 </span>
               </div>
             </div>
@@ -1083,7 +1134,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
             {currentTab === tabs[2] && (
               <button
                 onClick={() => {
-                  optionPayment.includes("VNPAY")
+                  optionPayment.includes("SOLANA")
                     ? handlePayment()
                     : handleBoughtProd({ isPay: false });
                 }}
@@ -1093,7 +1144,7 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
                     : "bg-green-600 hover:bg-green-700 text-white"
                 }  w-full py-3 rounded-md font-semibold mt-4`}
               >
-                {optionPayment.includes("VNPAY") ? "Thanh toán" : "Đặt Hàng"}
+                {optionPayment.includes("SOLANA") ? "Thanh toán" : "Đặt Hàng"}
               </button>
             )}
           </div>
@@ -1143,7 +1194,15 @@ const Checkout = ({ loading }: { loading: Boolean }) => {
         setOpen={setOpenModalPayment}
         title="Thanh toán đơn hàng"
       >
-        <PaymentForm price={totalPriceOrder} voucher={voucherUsed} />
+        {/* <PaymentForm price={totalPriceOrder} voucher={voucherUsed} /> */}
+        {/* <PaymentForm price={totalPriceOrder} voucher={voucherUsed} onPaymentSuccess={() => handleBoughtProd({ isPay: true })} /> */}
+        <PaymentForm
+          price={totalPriceOrder}
+          voucher={voucherUsed}
+          onPaymentSuccess={(solscanUrl) =>
+            handleBoughtProd({ isPay: true, solscanUrl })
+          }
+        />
       </Modal>
     </>
   );
