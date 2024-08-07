@@ -756,7 +756,7 @@ export default function PaymentForm({
       }
 
       const destPubkey = new PublicKey(
-        "5i4CEJ5hpwtS1F3bRBdmnkbw17xXpgBqN2GrQV5XBKG7" // ReceiverID
+        "F5Sk8W4hcXuqy7ypbx7TzkEDiTC6PqSSyfkLBt4ozudq" // ReceiverID
       );
       const transaction = new Transaction().add(
         SystemProgram.transfer({
